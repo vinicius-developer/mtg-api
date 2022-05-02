@@ -1,0 +1,41 @@
+version: "3.3"
+
+services:
+  postgresql:
+    container_name: postgresql
+    build:
+      context: ./database_container
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - main
+
+  app:
+    container_name: app
+    build:
+      context: ./
+      dockerfile: ./mtg_container/Dockerfile
+    volumes:
+      - ./:/app
+      - ./m2:/root/.m2
+    ports:
+      - "8080:8080"
+      - "35729:35729"
+      - "5005:5005"
+    command: sh run.sh
+    depends_on:
+      - postgresql
+    networks:
+      - main
+
+volumes:
+  postgres_data: {}
+
+networks:
+  main:
+    driver: bridge
