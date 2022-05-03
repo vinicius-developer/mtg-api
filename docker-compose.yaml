@@ -7,7 +7,8 @@ services:
       context: ./database_container
       dockerfile: Dockerfile
     environment:
-      POSTGRES_PASSWORD: 123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

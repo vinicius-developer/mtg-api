@@ -1,10 +1,11 @@
 package br.com.zappts.mtg.user.service;
 
-import br.com.zappts.mtg.user.entity.UserEntity;
+import br.com.zappts.mtg.user.entities.UserEntity;
 import br.com.zappts.mtg.user.repository.UserRepository;
-import br.com.zappts.mtg.user.dataStrucuture.request.UserRequestCreateDto;
+import br.com.zappts.mtg.user.dataStrucuture.UserCreateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -16,7 +17,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void create(UserRequestCreateDto userRequestCreateDto) {
+    @Transactional
+    public void create(UserCreateDto userRequestCreateDto) {
 
         UserEntity userEntity = new UserEntity(
                 userRequestCreateDto.getEmail(),
@@ -27,8 +29,8 @@ public class UserService {
 
     }
 
-    public boolean emailAlreadyExists(UserRequestCreateDto userRequestCreateDto) {
+    public boolean emailAlreadyExists(String email) {
         return this.userRepository
-                .existsByEmail(userRequestCreateDto.getEmail());
+                .existsByEmail(email);
     }
 }

@@ -4,7 +4,6 @@ GRANT USAGE ON SCHEMA public TO postgres;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO postgres;
 
-
 create table users(
     id SERIAL PRIMARY KEY,
     email varchar(150) unique,
