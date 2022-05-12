@@ -1,8 +1,8 @@
-package br.com.zappts.mtg.user.service;
+package br.com.zappts.mtg.domain.user.service;
 
-import br.com.zappts.mtg.user.entities.UserEntity;
-import br.com.zappts.mtg.user.repository.UserRepository;
-import br.com.zappts.mtg.user.dataStrucuture.UserCreateDto;
+import br.com.zappts.mtg.domain.user.controllers.dto.UserCreateDto;
+import br.com.zappts.mtg.domain.user.entities.UserEntity;
+import br.com.zappts.mtg.domain.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

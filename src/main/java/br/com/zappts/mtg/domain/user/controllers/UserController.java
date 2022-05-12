@@ -1,11 +1,12 @@
-package br.com.zappts.mtg.user.controllers;
+package br.com.zappts.mtg.domain.user.controllers;
 
 
+import br.com.zappts.mtg.domain.user.controllers.dto.UserCreateDto;
+import br.com.zappts.mtg.domain.user.controllers.dto.UserLoginDto;
+import br.com.zappts.mtg.domain.user.controllers.errors.UserResponseMessages;
 import br.com.zappts.mtg.infra.security.service.TokenService;
-import br.com.zappts.mtg.user.controllers.errors.ResponseMessages;
-import br.com.zappts.mtg.user.dataStrucuture.UserLoginDto;
-import br.com.zappts.mtg.user.service.UserService;
-import br.com.zappts.mtg.user.dataStrucuture.UserCreateDto;
+import br.com.zappts.mtg.domain.user.controllers.dto.TokenDto;
+import br.com.zappts.mtg.domain.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class UserController {
 
         if(this.userService.emailAlreadyExists(userRequestCreateDto.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(ResponseMessages.EMAILALREADYINUSE);
+                    .body(UserResponseMessages.EMAIL_ALREADY_IN_USE);
         }
 
         this.userService.create(userRequestCreateDto);
@@ -58,12 +59,10 @@ public class UserController {
 
             String token = this.tokenService.generateToken(authentication);
 
-            System.out.println(token);
-
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
         } catch (AuthenticationException e) {
-            System.out.println(e);
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.internalServerError()
+                    .body(UserResponseMessages.INTERNAL_ERROR_IN_AUTH);
         }
 
 

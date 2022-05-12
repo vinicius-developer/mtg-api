@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.user.dataStrucuture;
+package br.com.zappts.mtg.domain.user.controllers.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;

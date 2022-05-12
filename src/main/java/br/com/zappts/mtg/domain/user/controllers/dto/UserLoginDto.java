@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.user.dataStrucuture;
+package br.com.zappts.mtg.domain.user.controllers.dto;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

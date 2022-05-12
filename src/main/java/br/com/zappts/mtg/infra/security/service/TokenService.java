@@ -1,6 +1,6 @@
 package br.com.zappts.mtg.infra.security.service;
 
-import br.com.zappts.mtg.user.entities.UserEntity;
+import br.com.zappts.mtg.domain.user.entities.UserEntity;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -37,4 +37,22 @@ public class TokenService {
 
     }
 
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser()
+                    .setSigningKey(this.secret)
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Long getUserId(String token) {
+        return Long.parseLong(Jwts.parser()
+                .setSigningKey(this.secret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject());
+    }
 }

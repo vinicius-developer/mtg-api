@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.user.entities;
+package br.com.zappts.mtg.domain.user.entities;
 
 import br.com.zappts.mtg.infra.security.UserProfile;
 import org.springframework.security.core.GrantedAuthority;

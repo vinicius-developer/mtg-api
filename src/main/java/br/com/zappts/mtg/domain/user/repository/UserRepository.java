@@ -1,6 +1,6 @@
-package br.com.zappts.mtg.user.repository;
+package br.com.zappts.mtg.domain.user.repository;
 
-import br.com.zappts.mtg.user.entities.UserEntity;
+import br.com.zappts.mtg.domain.user.entities.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
