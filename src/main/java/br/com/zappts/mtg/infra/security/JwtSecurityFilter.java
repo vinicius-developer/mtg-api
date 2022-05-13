@@ -3,6 +3,8 @@ package br.com.zappts.mtg.infra.security;
 import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
 import br.com.zappts.mtg.domain.user.database.repository.UserRepository;
 import br.com.zappts.mtg.infra.security.service.TokenService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -33,7 +35,7 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
 
         String token = this.getBearerTokenFromRequest(request);
 
-        if(this.tokenService.validateToken(token)) {
+        if(this.tokenService.validateToken(token))  {
             this.authenticate(token);
         }
 

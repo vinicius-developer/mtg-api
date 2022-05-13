@@ -61,11 +61,8 @@ public class UserController {
 
             return ResponseEntity.ok(new TokenDto(token, "Bearer"));
         } catch (AuthenticationException e) {
-            return ResponseEntity.internalServerError()
-                    .body(UserResponseMessages.INTERNAL_ERROR_IN_AUTH);
+            return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
         }
-
-
 
     }
 

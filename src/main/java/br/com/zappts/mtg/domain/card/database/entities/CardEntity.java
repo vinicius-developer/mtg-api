@@ -14,8 +14,8 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "id_list", nullable = false)
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
     private ListEntity list;
 
     @Column(nullable = false)

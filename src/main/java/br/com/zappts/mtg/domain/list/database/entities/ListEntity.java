@@ -1,6 +1,5 @@
 package br.com.zappts.mtg.domain.list.database.entities;
 
-import br.com.zappts.mtg.domain.list.dataStructure.CreateListDto;
 import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
 
 import javax.persistence.*;
@@ -13,8 +12,8 @@ public class ListEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private UserEntity user;
 
     @Column(nullable = false)
@@ -24,9 +23,9 @@ public class ListEntity {
 
     }
 
-    public ListEntity(CreateListDto createListDto) {
-        this.user = createListDto.getOwner();
-        this.name = createListDto.getName();
+    public ListEntity(String name, UserEntity user) {
+        this.user = user;
+        this.name = name;
     }
 
     public Long getId() {

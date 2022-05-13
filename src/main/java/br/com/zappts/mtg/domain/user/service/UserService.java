@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.InvalidParameterException;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -32,5 +35,15 @@ public class UserService {
     public boolean emailAlreadyExists(String email) {
         return this.userRepository
                 .existsByEmail(email);
+    }
+
+    public UserEntity getUserById(Long userId) {
+        Optional<UserEntity> OptionalUser = this.userRepository.findById(userId);
+
+        if(OptionalUser.isEmpty()) {
+            throw new InvalidParameterException("Usuario com este id não existe");
+        }
+
+        return OptionalUser.get();
     }
 }

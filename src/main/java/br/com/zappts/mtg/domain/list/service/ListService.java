@@ -3,6 +3,7 @@ package br.com.zappts.mtg.domain.list.service;
 import br.com.zappts.mtg.domain.list.dataStructure.CreateListDto;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
 import br.com.zappts.mtg.domain.list.database.repository.ListRepository;
+import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,11 @@ public class ListService {
         this.listRepository = listRepository;
     }
 
-    private ListEntity create(CreateListDto createListDto) {
+    public ListEntity create(CreateListDto createListDto, UserEntity user) {
 
-        ListEntity list = new ListEntity(createListDto);
+        ListEntity list = new ListEntity(createListDto.getName(), user);
 
-        return this.listRepository.save();
+        return this.listRepository.save(list);
 
     }
 
