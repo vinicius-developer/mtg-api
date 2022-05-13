@@ -1,7 +1,6 @@
 package br.com.zappts.mtg.infra.security;
 
-import br.com.zappts.mtg.domain.user.entities.UserEntity;
-import br.com.zappts.mtg.domain.user.repository.UserRepository;
+import br.com.zappts.mtg.domain.user.database.repository.UserRepository;
 import br.com.zappts.mtg.infra.security.service.AuthenticationService;
 import br.com.zappts.mtg.infra.security.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;

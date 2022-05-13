@@ -1,6 +1,6 @@
 package br.com.zappts.mtg.infra.security.service;
 
-import br.com.zappts.mtg.domain.user.entities.UserEntity;
+import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Jwts;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Service
@@ -54,5 +55,13 @@ public class TokenService {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject());
+    }
+
+    public String restoreToken(String token) {
+        if (token == null || token.isBlank() || !token.startsWith("Bearer")) {
+            return null;
+        }
+
+        return token.substring(7);
     }
 }

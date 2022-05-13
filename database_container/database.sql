@@ -12,7 +12,8 @@ create table users(
 
 create table list_of_cards(
     id SERIAL PRIMARY KEY,
-    id_user integer
+    id_user integer,
+    name varchar(150)
 );
 
 create type language_card_type as ENUM('inglês', 'português', 'japones');

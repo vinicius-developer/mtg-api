@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.domain.user.controllers.dto;
+package br.com.zappts.mtg.domain.user.dataStructure;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 
 public class UserLoginDto {
 
-    @NotNull(message = "email cannot be null")
-    @NotEmpty(message = "email cannot be empty")
+    @NotNull(message = "E-mail deve ser informado")
+    @NotEmpty(message = "E-mail deve ser informado")
     private String email;
 
-    @NotNull(message = "password cannot be null")
-    @NotEmpty(message = "password cannot be empty")
+    @NotNull(message = "Senha deve ser informada")
+    @NotEmpty(message = "Senha deve ser informada")
     private String password;
 
     public void setEmail(String email) {

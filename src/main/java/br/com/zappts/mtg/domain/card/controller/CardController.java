@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.domain.card;
+package br.com.zappts.mtg.domain.card.controller;
 
 
 import org.springframework.http.ResponseEntity;

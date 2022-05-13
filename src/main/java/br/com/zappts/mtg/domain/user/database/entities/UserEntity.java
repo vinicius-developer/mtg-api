@@ -1,4 +1,4 @@
-package br.com.zappts.mtg.domain.user.entities;
+package br.com.zappts.mtg.domain.user.database.entities;
 
 import br.com.zappts.mtg.infra.security.UserProfile;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +35,10 @@ public class UserEntity implements UserDetails {
         return new ArrayList<>() {{
             add(new UserProfile());
         }};
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

@@ -1,11 +1,11 @@
 package br.com.zappts.mtg.domain.user.controllers;
 
 
-import br.com.zappts.mtg.domain.user.controllers.dto.UserCreateDto;
-import br.com.zappts.mtg.domain.user.controllers.dto.UserLoginDto;
+import br.com.zappts.mtg.domain.user.dataStructure.UserCreateDto;
+import br.com.zappts.mtg.domain.user.dataStructure.UserLoginDto;
 import br.com.zappts.mtg.domain.user.controllers.errors.UserResponseMessages;
 import br.com.zappts.mtg.infra.security.service.TokenService;
-import br.com.zappts.mtg.domain.user.controllers.dto.TokenDto;
+import br.com.zappts.mtg.domain.user.dataStructure.TokenDto;
 import br.com.zappts.mtg.domain.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package br.com.zappts.mtg.infra.security;
 
-import br.com.zappts.mtg.domain.user.entities.UserEntity;
-import br.com.zappts.mtg.domain.user.repository.UserRepository;
+import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
+import br.com.zappts.mtg.domain.user.database.repository.UserRepository;
 import br.com.zappts.mtg.infra.security.service.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,10 +31,12 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        String token = restoreToken(request);
+        String token = this.getBearerTokenFromRequest(request);
+
         if(this.tokenService.validateToken(token)) {
             this.authenticate(token);
         }
+
         filterChain.doFilter(request, response);
     }
 
@@ -63,14 +65,10 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
         return user.get();
     }
 
-    private String restoreToken(HttpServletRequest request) {
+    private String getBearerTokenFromRequest(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
-        if (token == null || token.isBlank() || !token.startsWith("Bearer")) {
-            return null;
-        }
-
-        return token.substring(7);
+        return this.tokenService.restoreToken(token);
     }
 
 }
