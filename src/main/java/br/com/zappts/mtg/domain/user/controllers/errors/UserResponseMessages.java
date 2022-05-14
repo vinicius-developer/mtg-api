@@ -6,11 +6,11 @@ import java.util.Map;
 public class UserResponseMessages {
 
     public static final Map<String, String> EMAIL_ALREADY_IN_USE = new HashMap<String, String>() {{
-        put("message", "Email already exists");
+        put("message", "Nao foi possivel cadastrar");
     }};
 
-    public static final Map<String, String> INTERNAL_ERROR_IN_AUTH = new HashMap<>() {{
-        put("message", "Internal server error, please give a minute");
+    public static final Map<String, String> UNAUTHORIZED = new HashMap<>() {{
+        put("error", "Unauthorized");
     }};
 
 

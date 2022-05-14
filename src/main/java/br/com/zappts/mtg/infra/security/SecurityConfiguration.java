@@ -71,10 +71,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     private HttpSecurity configureRoutes(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests()
+        return http.cors().and().csrf().disable().authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/user/login")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/user/create")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/list/find/*")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

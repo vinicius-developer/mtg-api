@@ -11,11 +11,12 @@ import java.math.BigDecimal;
 public class CardEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", insertable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_list")
     private ListEntity list;
 
     @Column(nullable = false)
@@ -25,7 +26,7 @@ public class CardEntity {
     private String edition;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "language")
+    @Column(nullable = false, name = "language_card")
     private CardLanguage languageCard;
 
     @Column(nullable = false)
@@ -56,6 +57,10 @@ public class CardEntity {
         this.amount = amount;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public ListEntity getListEntity() {
         return list;
     }
@@ -70,6 +75,10 @@ public class CardEntity {
 
     public CardLanguage getLanguageCard() {
         return languageCard;
+    }
+
+    public ListEntity getList() {
+        return list;
     }
 
     public Boolean getIsFoil() {

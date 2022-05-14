@@ -14,7 +14,7 @@ import java.util.Collection;
 public class UserEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -23,11 +23,15 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
     public UserEntity() {}
 
-    public UserEntity(String email, String password) {
+    public UserEntity(String email, String password, String username) {
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
+        this.username = username;
     }
 
     @Override
@@ -51,7 +55,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.username;
     }
 
     @Override

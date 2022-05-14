@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class JwtSecurityFilter extends OncePerRequestFilter {
@@ -36,7 +37,12 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
         String token = this.getBearerTokenFromRequest(request);
 
         if(this.tokenService.validateToken(token))  {
-            this.authenticate(token);
+            try {
+                this.authenticate(token);
+            } catch (InvalidParameterException e) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                        "token invalido");
+            }
         }
 
         filterChain.doFilter(request, response);

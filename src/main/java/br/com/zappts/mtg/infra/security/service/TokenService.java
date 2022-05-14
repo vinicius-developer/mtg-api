@@ -59,7 +59,7 @@ public class TokenService {
     }
 
     public String restoreToken(String token) {
-        if (token == null || token.isBlank() || !token.startsWith("Bearer")) {
+        if (token == null || token.isBlank() || !token.startsWith("Bearer") || token.length() < 7) {
             return null;
         }
 

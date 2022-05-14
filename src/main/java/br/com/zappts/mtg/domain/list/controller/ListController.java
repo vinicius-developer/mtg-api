@@ -1,6 +1,8 @@
 package br.com.zappts.mtg.domain.list.controller;
 
-import br.com.zappts.mtg.domain.list.dataStructure.CreateListDto;
+import br.com.zappts.mtg.domain.list.controller.errors.ListResponseMessages;
+import br.com.zappts.mtg.domain.list.dataStructure.FormatListDto;
+import br.com.zappts.mtg.domain.list.dataStructure.ShowListDto;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
 import br.com.zappts.mtg.domain.list.service.ListService;
 import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.InvalidParameterException;
 
 @RestController
 @RequestMapping("/list")
@@ -32,7 +35,7 @@ public class ListController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(
-            @RequestBody CreateListDto createListDto,
+            @RequestBody FormatListDto createListDto,
             @RequestHeader("Authorization") String header
     ) throws URISyntaxException {
 
@@ -55,8 +58,56 @@ public class ListController {
 
     }
 
+    @GetMapping("/find/{id}")
+    public ResponseEntity<?> find(@PathVariable Long id) {
+
+        try {
+
+            ListEntity listEntity = this.listService.findListById(id);
+
+            ShowListDto showListDto  = new ShowListDto(listEntity);
+
+            return ResponseEntity.ok(showListDto);
+
+        } catch (InvalidParameterException e) {
+
+            return ResponseEntity.badRequest().body(ListResponseMessages.NONEXISTENT_LIST);
+
+        } catch (Exception e) {
+
+            return ResponseEntity.internalServerError().build();
+
+        }
+
+    }
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id,
+                                    @RequestHeader("Authorization") String header,
+                                    @RequestBody FormatListDto formatListDto) {
+        try {
+
+            String token = this.tokenService.restoreToken(header);
+
+            Long userId = this.tokenService.getUserId(token);
+
+            UserEntity user = this.userService.getUserById(userId);
+
+            this.listService.updateListName(id, formatListDto, user);
+
+            return ResponseEntity.ok().build();
+
+        } catch (InvalidParameterException e) {
+
+            return ResponseEntity.badRequest().body(ListResponseMessages.NONEXISTENT_LIST);
+
+        } catch (Exception e) {
+
+            return ResponseEntity.internalServerError().build();
+
+        }
 
 
+    }
 
 
 }

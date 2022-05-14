@@ -25,7 +25,8 @@ public class UserService {
 
         UserEntity userEntity = new UserEntity(
                 userRequestCreateDto.getEmail(),
-                userRequestCreateDto.getPassword()
+                userRequestCreateDto.getPassword(),
+                userRequestCreateDto.getUsername()
         );
 
         this.userRepository.save(userEntity);

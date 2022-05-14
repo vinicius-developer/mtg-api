@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/user")
@@ -61,7 +62,8 @@ public class UserController {
 
             return ResponseEntity.ok(new TokenDto(token, "Bearer"));
         } catch (AuthenticationException e) {
-            return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>(String.valueOf(UserResponseMessages.UNAUTHORIZED),
+                    HttpStatus.UNAUTHORIZED);
         }
 
     }
