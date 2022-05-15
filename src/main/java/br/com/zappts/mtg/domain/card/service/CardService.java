@@ -1,24 +1,15 @@
 package br.com.zappts.mtg.domain.card.service;
 
-import br.com.zappts.mtg.domain.card.controller.exception.InvalidListAccessException;
 import br.com.zappts.mtg.domain.card.dataStrucuture.CreateCardDto;
 import br.com.zappts.mtg.domain.card.dataStrucuture.UpdateCardDto;
 import br.com.zappts.mtg.domain.card.database.entities.CardEntity;
 import br.com.zappts.mtg.domain.card.database.respository.CardRepository;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
-import br.com.zappts.mtg.domain.list.database.repository.ListRepository;
-import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import java.math.BigDecimal;
+
 import java.security.InvalidParameterException;
-import java.util.List;
 import java.util.Optional;
 
 @Service

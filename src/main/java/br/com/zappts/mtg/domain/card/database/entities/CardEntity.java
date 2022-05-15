@@ -3,7 +3,6 @@ package br.com.zappts.mtg.domain.card.database.entities;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "cards")

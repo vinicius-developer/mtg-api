@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Jwts;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.InvalidParameterException;
 import java.util.Date;
 
 @Service

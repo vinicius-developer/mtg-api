@@ -2,8 +2,6 @@ package br.com.zappts.mtg.domain.list.dataStructure;
 
 import br.com.zappts.mtg.domain.card.database.entities.CardEntity;
 
-import java.math.BigDecimal;
-
 public class CardToListDto {
     private Long id;
 

@@ -9,15 +9,15 @@ import br.com.zappts.mtg.domain.list.service.ListService;
 import br.com.zappts.mtg.domain.user.database.entities.UserEntity;
 import br.com.zappts.mtg.domain.user.service.UserService;
 import br.com.zappts.mtg.infra.security.service.TokenService;
-import org.apache.catalina.User;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.InvalidParameterException;
@@ -114,11 +114,14 @@ public class ListController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> all(@RequestParam String page) {
+    @Validated
+    public ResponseEntity<?> all(@RequestParam(name = "page", defaultValue = "0", required = false)
+                                     @Valid
+                                     @Pattern(regexp = "\\d\\w+") String page) {
+
+        int pageInt = Integer.parseInt(page);
 
         try {
-
-            int pageInt = Integer.parseInt(page);
 
             Pageable pageable = PageRequest.of(pageInt, 10);
 

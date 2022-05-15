@@ -4,7 +4,6 @@ import br.com.zappts.mtg.domain.card.database.entities.CardEntity;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface CardRepository extends CrudRepository<CardEntity, Long> {

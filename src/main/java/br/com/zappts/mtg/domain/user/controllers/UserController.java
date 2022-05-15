@@ -7,7 +7,6 @@ import br.com.zappts.mtg.domain.user.controllers.errors.UserResponseMessages;
 import br.com.zappts.mtg.infra.security.service.TokenService;
 import br.com.zappts.mtg.domain.user.dataStructure.TokenDto;
 import br.com.zappts.mtg.domain.user.service.UserService;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
