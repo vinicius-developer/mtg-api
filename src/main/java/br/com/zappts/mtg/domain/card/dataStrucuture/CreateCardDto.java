@@ -28,9 +28,9 @@ public class CreateCardDto {
     @NotNull(message = "É necessário informar se a carta é foil")
     private Boolean foil;
 
-    @Positive(message = "preço da carta invalido")
-    @NotNull(message = "preço da carta deve ser informado")
-    private BigDecimal price;
+    @NotNull(message = "Preço da carta deve ser informado")
+    @Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?$", message = "Insira uma valor valido")
+    private String price;
 
     public Long getList() {
         return list;
@@ -48,7 +48,7 @@ public class CreateCardDto {
         return foil;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 

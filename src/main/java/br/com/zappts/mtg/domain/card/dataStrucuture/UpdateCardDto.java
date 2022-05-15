@@ -26,7 +26,7 @@ public class UpdateCardDto {
 
     @Positive(message = "preço da carta invalido")
     @NotNull(message = "preço da carta deve ser informado")
-    private BigDecimal price;
+    private String price;
 
     public String getName() {
         return name;
@@ -44,7 +44,7 @@ public class UpdateCardDto {
         return foil;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 }

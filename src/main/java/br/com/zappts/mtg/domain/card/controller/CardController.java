@@ -58,6 +58,7 @@ public class CardController {
         UserEntity user = this.userService.getUserById(idUser);
 
         Long listId = createCardDto.getList();
+        System.out.println("asdfasdfasdfasdfasdfasdf");
 
         if(!this.listService.userIsListOwner(user, listId)) {
             return ResponseEntity.badRequest()

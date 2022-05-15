@@ -31,7 +31,7 @@ public class CardEntity {
     private Boolean isFoil;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private String price;
 
     @Column(nullable = false)
     private Integer amount;
@@ -44,7 +44,7 @@ public class CardEntity {
                       String edition,
                       String language,
                       Boolean isFoil,
-                      BigDecimal price,
+                      String price,
                       Integer amount) {
         this.list = list;
         this.name = name;
@@ -57,10 +57,6 @@ public class CardEntity {
 
     public Long getId() {
         return id;
-    }
-
-    public ListEntity getListEntity() {
-        return list;
     }
 
     public String getName() {
@@ -83,7 +79,7 @@ public class CardEntity {
         return isFoil;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -92,10 +88,6 @@ public class CardEntity {
     }
 
     public void setList(ListEntity list) {
-        this.list = list;
-    }
-
-    public void setListEntity(ListEntity list) {
         this.list = list;
     }
 
@@ -115,7 +107,7 @@ public class CardEntity {
         this.isFoil = isFoil;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -13,5 +13,6 @@ public interface CardRepository extends CrudRepository<CardEntity, Long> {
                                                                        String edition,
                                                                        String cardLanguage,
                                                                        Boolean isFoil,
-                                                                       BigDecimal Price);
+                                                                       String price
+    );
 }

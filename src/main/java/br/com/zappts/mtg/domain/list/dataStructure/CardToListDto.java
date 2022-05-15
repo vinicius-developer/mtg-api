@@ -15,7 +15,7 @@ public class CardToListDto {
 
     private Boolean isFoil;
 
-    private BigDecimal price;
+    private String price;
 
     private Integer amount;
 
@@ -69,11 +69,11 @@ public class CardToListDto {
         isFoil = foil;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
