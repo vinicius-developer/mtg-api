@@ -19,7 +19,6 @@ public class UserEntity implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String email;
-
     @Column(nullable = false)
     private String password;
 

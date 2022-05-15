@@ -5,12 +5,16 @@ import java.util.Map;
 
 public class UserResponseMessages {
 
-    public static final Map<String, String> EMAIL_ALREADY_IN_USE = new HashMap<String, String>() {{
-        put("message", "Nao foi possivel cadastrar");
+    public static final Map<String, String> EMAIL_ERROR = new HashMap<>() {{
+        put("message", "e-mail invalido");
     }};
 
-    public static final Map<String, String> UNAUTHORIZED = new HashMap<>() {{
-        put("error", "Unauthorized");
+    public static final Map<String, String> USERNAME_ERROR = new HashMap<>() {{
+        put("message", "username invalido");
+    }};
+
+    public static final Map<String, String> UNAUTHORIZED = new HashMap<String, String>() {{
+        put("error", "nao autorizado");
     }};
 
 

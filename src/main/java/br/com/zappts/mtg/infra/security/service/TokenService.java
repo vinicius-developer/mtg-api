@@ -65,4 +65,13 @@ public class TokenService {
 
         return token.substring(7);
     }
+
+    public Long getUserFromHeader(String header) {
+
+        String token = this.restoreToken(header);
+
+        return this.getUserId(token);
+
+    }
+
 }

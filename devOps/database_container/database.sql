@@ -5,7 +5,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO postgres;
 create table users(
     id SERIAL PRIMARY KEY,
     email varchar(150) unique,
-    password varchar(72) not null
+    password varchar(72) not null,
+    username varchar(150) not null unique
 );
 
 create table list_of_cards(
@@ -14,14 +15,12 @@ create table list_of_cards(
     name varchar(150)
 );
 
-create type language_card_type as ENUM('inglês', 'português', 'japones');
-
 create table cards(
     id SERIAL PRIMARY KEY,
     id_list integer not null,
     name varchar(150) not null,
     edition varchar(250) not null,
-    language_card language_card_type not null,
+    language_card varchar(20) not null,
     is_foil boolean not null,
     price real not null,
     amount integer default(1) not null

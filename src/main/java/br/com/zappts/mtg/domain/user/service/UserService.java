@@ -38,6 +38,11 @@ public class UserService {
                 .existsByEmail(email);
     }
 
+    public boolean usernameAlreadyExists(String username) {
+        return this.userRepository
+                .existsByUsername(username);
+    }
+
     public UserEntity getUserById(Long userId) {
         Optional<UserEntity> OptionalUser = this.userRepository.findById(userId);
 

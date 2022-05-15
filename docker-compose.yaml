@@ -4,9 +4,10 @@ services:
   postgresql:
     container_name: postgresql
     build:
-      context: ./database_container
+      context: devOps/database_container
       dockerfile: Dockerfile
     environment:
+      - POSTGRES_DB=mtg
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     volumes:
@@ -20,7 +21,7 @@ services:
     container_name: app
     build:
       context: ./
-      dockerfile: ./mtg_container/Dockerfile
+      dockerfile: devOps/mtg_container/Dockerfile
     volumes:
       - ./:/app
       - ./m2:/root/.m2
@@ -28,15 +29,12 @@ services:
       - "8080:8080"
       - "35729:35729"
       - "5005:5005"
-    command: sh run.sh
+    command: sh devOps/mtg_container/run.sh
     depends_on:
       - postgresql
     networks:
       - main
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/mtg
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=123456
+
 
 volumes:
   postgres_data: {}

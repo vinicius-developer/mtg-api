@@ -1,6 +1,5 @@
 package br.com.zappts.mtg.domain.card.database.entities;
 
-import br.com.zappts.mtg.domain.card.dataStrucuture.CardLanguage;
 import br.com.zappts.mtg.domain.list.database.entities.ListEntity;
 
 import javax.persistence.*;
@@ -25,9 +24,8 @@ public class CardEntity {
     @Column(nullable = false)
     private String edition;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "language_card")
-    private CardLanguage languageCard;
+    private String language;
 
     @Column(nullable = false)
     private Boolean isFoil;
@@ -44,14 +42,14 @@ public class CardEntity {
     public CardEntity(ListEntity list,
                       String name,
                       String edition,
-                      CardLanguage languageCard,
+                      String language,
                       Boolean isFoil,
                       BigDecimal price,
                       Integer amount) {
         this.list = list;
         this.name = name;
         this.edition = edition;
-        this.languageCard = languageCard;
+        this.language = language;
         this.isFoil = isFoil;
         this.price = price;
         this.amount = amount;
@@ -73,8 +71,8 @@ public class CardEntity {
         return edition;
     }
 
-    public CardLanguage getLanguageCard() {
-        return languageCard;
+    public String getLanguage() {
+        return language;
     }
 
     public ListEntity getList() {
@@ -93,6 +91,10 @@ public class CardEntity {
         return amount;
     }
 
+    public void setList(ListEntity list) {
+        this.list = list;
+    }
+
     public void setListEntity(ListEntity list) {
         this.list = list;
     }
@@ -105,8 +107,8 @@ public class CardEntity {
         this.edition = edition;
     }
 
-    public void setLanguageCard(CardLanguage languageCard) {
-        this.languageCard = languageCard;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public void setIsFoil(Boolean isFoil) {
@@ -120,4 +122,6 @@ public class CardEntity {
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
+
+
 }

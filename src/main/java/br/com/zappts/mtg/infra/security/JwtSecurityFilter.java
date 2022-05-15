@@ -39,7 +39,7 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
         if(this.tokenService.validateToken(token))  {
             try {
                 this.authenticate(token);
-            } catch (InvalidParameterException e) {
+            } catch (Exception e) {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST,
                         "token invalido");
             }

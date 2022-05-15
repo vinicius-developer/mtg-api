@@ -1,6 +1,5 @@
 package br.com.zappts.mtg.domain.list.dataStructure;
 
-import br.com.zappts.mtg.domain.card.dataStrucuture.CardLanguage;
 import br.com.zappts.mtg.domain.card.database.entities.CardEntity;
 
 import java.math.BigDecimal;
@@ -12,7 +11,7 @@ public class CardToListDto {
 
     private String edition;
 
-    private CardLanguage language;
+    private String language;
 
     private Boolean isFoil;
 
@@ -24,7 +23,7 @@ public class CardToListDto {
         this.id = card.getId();
         this.name = card.getName();
         this.edition = card.getEdition();
-        this.language = card.getLanguageCard();
+        this.language = card.getLanguage();
         this.isFoil = card.getIsFoil();
         this.price = card.getPrice();
         this.amount = card.getAmount();
@@ -54,11 +53,11 @@ public class CardToListDto {
         this.edition = edition;
     }
 
-    public CardLanguage getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(CardLanguage language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
