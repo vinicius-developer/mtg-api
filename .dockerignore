@@ -1,4 +1,4 @@
-/devOps/database_container
-/devOps/mtg_container
+/devOps/containers/database
+/devOps/containers/mtg
 .bash_history
 docker-compose.yaml

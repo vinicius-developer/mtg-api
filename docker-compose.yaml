@@ -4,7 +4,7 @@ services:
   postgresql:
     container_name: postgresql
     build:
-      context: devOps/database_container
+      context: devOps/containers/database/Dockerfile
       dockerfile: Dockerfile
     environment:
       - POSTGRES_DB=mtg
@@ -20,16 +20,16 @@ services:
   app:
     container_name: app
     build:
-      context: ./
-      dockerfile: devOps/mtg_container/Dockerfile
+      context: devOps/containers/mtg/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./:/app
-      - ./m2:/root/.m2
+      - ./devOps/libs/m2:/root/.m2
     ports:
       - "8080:8080"
       - "35729:35729"
       - "5005:5005"
-    command: sh devOps/mtg_container/run.sh
+    command: sh devOps/containers/mtg/run.sh
     depends_on:
       - postgresql
     networks:
